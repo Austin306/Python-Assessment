@@ -1,4 +1,4 @@
-import re
+import re #To use Regular Expression
 def main():
     input = '''{
   "Records": [
@@ -39,7 +39,7 @@ def main():
   ]
 }
 '''
-    match = re.findall(r'arn[\S]*mybucket',input)
+    match = re.findall(r'arn[\S]*mybucket',input) #Creates a list of all matches
     print(match)
 
 main()

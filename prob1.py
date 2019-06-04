@@ -20,17 +20,17 @@ def BinarSearch(list, l, r, x):
             return mid
 
         # If element is smaller than mid, then it
-        # can only be present in left subarray
+        # can only be present in left side of list
         elif list[mid] > x:
             return BinarSearch(list, l, mid-1, x)
 
         # Else the element can only be present
-        # in right subarray
+        # in right side of list
         else:
             return BinarSearch(list, mid + 1, r, x)
 
     else:
-        # Element is not present in the array
+        # Element is not present in the list
         return -1
 
 def main():
@@ -41,6 +41,8 @@ def main():
     n = len(list)
     for i in range(n):#For Loop to convert string to integers
         list[i] = int(list[i])
+    list.sort()#Sort the list if it is not sorted
+    print(list)
     pos = BinarSearch(list,0,n-1,element)
     if pos == -1:# If element is not present raise an exception
         try:
