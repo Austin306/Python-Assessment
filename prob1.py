@@ -8,22 +8,30 @@ class MyError(Exception):
         return(repr(self.value))
 
 
-def BinarySearch(list,element):
-    '''This function performs binary search and returns the position of element if it is present otherwise
-        it returns -1'''
-    lower = 0
-    upper = len(list)-1
-    pos = -1
-    while (lower <= upper):
-        mid = (lower + upper)//2
-        if list[mid] == element:
-            pos = mid
-            break
-        elif element > list[mid]:
-            lower = mid +1
+def BinarSearch(list, l, r, x):
+
+    # Check base case
+    if r >= l:
+
+        mid = (l + r)//2
+
+        # If element is present at the middle itself
+        if list[mid] == x:
+            return mid
+
+        # If element is smaller than mid, then it
+        # can only be present in left subarray
+        elif list[mid] > x:
+            return BinarSearch(list, l, mid-1, x)
+
+        # Else the element can only be present
+        # in right subarray
         else:
-            upper = mid + 1
-    return pos
+            return BinarSearch(list, mid + 1, r, x)
+
+    else:
+        # Element is not present in the array
+        return -1
 
 def main():
     '''Main function to take input and display the output'''
@@ -33,7 +41,7 @@ def main():
     n = len(list)
     for i in range(n):#For Loop to convert string to integers
         list[i] = int(list[i])
-    pos = BinarySearch(list,element)
+    pos = BinarSearch(list,0,n-1,element)
     if pos == -1:# If element is not present raise an exception
         try:
             raise MyError(n)
